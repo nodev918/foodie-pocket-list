@@ -1,0 +1,31 @@
+server:
+  name: stork
+  port: 9487
+  host: localhost
+connections:
+  kafka:
+    hosts: "localhost:9092"
+    topic: "stork"
+  postgresql:
+    DB: stork
+    Host: localhost:5432
+    User: postgres
+    # the database password provided by K8S secrets
+    Password: 123456
+    MaxOpen: 10
+    MaxIdle: 2
+  zookeeper:
+    hosts: 127.0.0.1:2181
+    connectionTimeout: 10
+    sessionTimeout: 2
+  redis:
+    hosts: 127.0.0.1:7000
+    password: 
+    poolSize: 10
+
+logs:
+  threshold: debug
+  index: user_id,thread_id,err,err_code,request_id,source,api,grpc_status,http_status,http_method,elapsed_time,user_agent
+resendDays: 30
+resendCount: 1000
+
